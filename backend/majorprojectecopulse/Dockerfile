@@ -1,12 +1,13 @@
-FROM eclipse-temurin:21-jdk-jammy 
+FROM eclipse-temurin:21-jdk-jammy
+
 WORKDIR /app
 
-COPY . .
+RUN apt-get update && apt-get install -y maven && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update && apt-get install -y maven
+COPY . .
 
 RUN mvn clean package -DskipTests
 
 EXPOSE 10000
 
-CMD java -jar target/majorprojectecopulse-0.0.1-SNAPSHOT.jar
+CMD ["java", "-jar", "target/majorprojectecopulse-0.0.1-SNAPSHOT.jar"]
