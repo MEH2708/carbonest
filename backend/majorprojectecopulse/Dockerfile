@@ -9,4 +9,4 @@ RUN mvn clean package -DskipTests
 
 EXPOSE 10000
 
-CMD ["java", "-jar", "target/*.jar"]
+CMD java -jar target/majorprojectecopulse-0.0.1-SNAPSHOT.jar
