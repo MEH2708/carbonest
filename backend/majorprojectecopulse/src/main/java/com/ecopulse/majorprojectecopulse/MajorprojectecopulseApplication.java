@@ -8,8 +8,13 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class MajorprojectecopulseApplication {
 
     public static void main(String[] args) {
-        new SpringApplicationBuilder(MajorprojectecopulseApplication.class)
-                .properties("server.port=${PORT:10000}")
-                .run(args);
+    String port = System.getenv("PORT");
+    if (port == null) {
+        port = "10000"; // fallback
     }
+
+    System.setProperty("server.port", port);
+
+    SpringApplication.run(MajorprojectecopulseApplication.class, args);
+}
 }
